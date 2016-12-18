@@ -119,22 +119,16 @@ void conv2(){
             is[i+5][j+5]=0.0;
             is[i+6][j+6]=0.0;
             is[i+7][j+7]=0.0;
-            Rep[i][j]=0;
-            Rep[i+1][j+1]=0;
-            Rep[i+2][j+2]=0;
-            Rep[i+3][j+3]=0;
-            Rep[i+4][j+4]=0;
-            Rep[i+5][j+5]=0;
-            Rep[i+6][j+6]=0;
-            Rep[i+7][j+7]=0;
         }
     }
-    for(i=IH;i<EIH;i++){
-        for(j=IW;j<EIW;j++){
+  
+    for(i=0;i<top;i++){
+        for(j=0;j<left;j++){
             Rep[i][j]=0;
+            Rep[i+IH][j+IW]=0;
         }
     }
-
+    
     for(i=top+1;i<=IH+top;i++){
         for(j=1+left;j<=IW+left;j++){
             Rep[i][j]= image[i-top-1][j-left-1];

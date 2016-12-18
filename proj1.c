@@ -17,8 +17,6 @@ int i,j;
 int image[IH][IW];
 double is[IH][IW];
 double g[N][N];
-double iun[IH][IW];
-int fim[IH][IW];
 int Rep[EIH][EIW];
 
 void read(){
@@ -47,7 +45,7 @@ void write(){
   {
     for(j=0;j<IW;j++)
     {
-      fputc(fim[i][j],frame_y);
+      fputc(image[i][j],frame_y);
     }
   }
   fclose(frame_y);
@@ -56,17 +54,10 @@ void write(){
 void calfin(){
     for(i=0;i<IH;i++){
         for(j=0;j<IW;j++){
-            iun[i][j] = image[i][j] + K*( image[i][j] - is[i][j] );
-
-            if(iun[i][j]>255){
-                fim[i][j] = 255;
-            }
-            else if(iun[i][j]<0){
-                fim[i][j] = 0;
-            }
-            else{
-                fim[i][j] = iun[i][j];
-            }
+            double temp = image[i][j] + K*( image[i][j] - is[i][j] );
+            if(temp>255) image[i][j] = 255;
+            else if(temp<0) image[i][j] = 0;
+            else image[i][j] = temp;
         }
     }
 }
